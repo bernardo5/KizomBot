@@ -26,3 +26,19 @@ bot.on('message', (msg) => {
     bot.sendMessage(chatId, response);
     
 });
+
+//ping heroku to prevent iddle
+const http = require('http');
+function keepAlive(){
+    setInterval(function(){
+        const options = {
+            host: 'https://kizombot.herokuapp.com/',
+            port: 80,
+            path: '/'
+        };
+        http.get(options, function(res){
+
+        });
+    }, 20000);
+}
+keepAlive();
