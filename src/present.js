@@ -24,5 +24,19 @@ module.exports.getParties = function(msg){
 }
 
 module.exports.getClasses = function(msg){
-    return 'Hi! Thanks for your interest in this bot 🤖 usage! 🙏\n\nPlease note this is a work in progress, not it finished... 👷‍♂️\n\nPlease come back later ⏰ to check the latest news! 🗞';
+    let response = 'So nice to hear you are interested in taking classes! 😍💃🕺\n';
+    response += 'Here\'s a list of some of the schools in Lisbon area! To check the schedules type /classes <school code>\n';
+    response += 'Example: if you want the schedule for jazzy saldanha you should type\n/classes 364\n\n';
+    response += 'List:\n Type Code \t School Name \t Map\n';
+    return response; 
+}
+
+module.exports.loadSchools = function(){
+    let schools = {};
+    const {load} = require('csv-load-sync');
+    const csv = load('./src/SampleDB/Schools.csv');
+    csv.forEach(row => {
+        schools[row.Code] = row;
+    });
+    return schools;
 }
